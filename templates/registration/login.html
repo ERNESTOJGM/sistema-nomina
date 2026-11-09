@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Iniciar Sesión{% endblock %}
+{% block content %}
+<h2>Iniciar sesion</h2>
+{% if form.errors %}<div class="errorlist">Usuario o contraseña incorrectos.</div>{% endif %}
+<form method="post">
+{% csrf_token %}
+<div class="form-row"><label>Usuario</label><input type="text" name="username" autofocus required></div>
+<div class="form-row"><label>Contraseña</label><input type="password" name="password" required></div>
+<button type="submit" class="btn">Entrar</button>
+</form>
+<p>No tienes cuenta? <a href="{% url 'users:registro' %}">Regístrate</a></p>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Panel {{ rol }}{% endblock %}
+{% block content %}
+<h2>Panel de {{ rol }}</h2>
+
+{% if rol == "Administrador" %}
+<p>Como Administrador puedes gestionar usuarios, roles y la nómina.</p>
+<ul>
+<li><a href="{% url 'core:lista' %}">Gestionar nomina</a></li>
+<li><a href="/admin/">Panel de Administrador</a></li>
+</ul>
+{% elif rol == "Gestor" %}
+<p>Como Gestor puedes administrar la nómina completa.</p>
+<ul>
+<li><a href="{% url 'core:lista' %}">Gestionar Nómina</a></li>
+</ul>
+{% elif rol == "Usuario" %}
+<p>Como Usuario puedes consultar la nómina solo lectura.</p>
+<ul>
+<li><a href="{% url 'core:lista' %}">Ver nómina</a></li>
+</ul>
+{% else %}
+<p>No tienes rol asignado. Contacta al administrador.</p>
+{% endif %}
+{% endblock %}

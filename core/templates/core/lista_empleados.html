@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Nomina{% endblock %}
+{% block content %}
+<h2>Nomina de Empleados</h2>
+<form method="get" style="margin-bottom:1rem;">
+<input type="text" name="q" value="{{ busqueda }}" placeholder="Buscar por nombre o cedula" style="padding:.4rem;">
+<button type="submit" class="btn">Buscar</button>
+<a href="{% url 'core:lista' %}" class="btn">Limpiar</a>
+</form>
+{% if puede_gestionar %}
+<a href="{% url 'core:nuevo' %}" class="btn">+ Nuevo empleado</a>
+<br><br>
+{% endif %}
+<table>
+<thead>
+<tr><th>Cedula</th><th>Nombre</th><th>Anios</th><th>Q15</th><th>Q30</th><th>Acciones</th></tr>
+</thead>
+<tbody>
+{% for emp in empleados %}
+<tr>
+<td>{{ emp.cedula }}</td>
+<td><a href="{% url 'core:detalle' emp.cedula %}">{{ emp.nombre }}</a></td>
+<td>{{ emp.anios_servicio }}</td>
+<td>${{ emp.primera_quincena|floatformat:2 }}</td>
+<td>${{ emp.quincena_30|floatformat:2 }}</td>
+<td>
+<a href="{% url 'core:detalle' emp.cedula %}" class="btn">Ver</a>
+{% if puede_gestionar %}
+<a href="{% url 'core:editar' emp.cedula %}" class="btn">Editar</a>
+<form method="post" action="{% url 'core:eliminar' emp.cedula %}" style="display:inline;" onsubmit="return confirm('Eliminar?');">
+{% csrf_token %}
+<button type="submit" class="btn btn-danger">Eliminar</button>
+</form>
+{% endif %}
+</td>
+</tr>
+{% empty %}
+<tr><td colspan="6">No hay empleados registrados.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

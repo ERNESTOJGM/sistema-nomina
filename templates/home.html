@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Bienvenido{% endblock %}
+{% block content %}
+<h2>Bienvenido al Sistema de Nómina Trabajador Petrolero</h2>
+<p>Aplicación para la gestión de la nómina de empleados Petroleros</p>
+<h3>Funcionalidades</h3>
+<ul>
+<li>Registro e inicio de sesión de usuarios.</li>
+<li>Roles: Administrador, Gestor, Usuario, Visitante.</li>
+<li>Gestión de empleados: Crear, Editar, Eliminar.</li>
+<li>Cálculo automático de quincenas, caja de ahorros y fideicomiso.</li>
+<li>Búsqueda por nombre o cédula.</li>
+</ul>
+<h3>Como empezar</h3>
+<ol>
+<li>Regístrate con tu cuenta.</li>
+<li>Inicia sesión.</li>
+<li>Accede a la nomina desde tu panel.</li>
+</ol>
+<a href="{% url 'users:login' %}" class="btn">Iniciar sesión</a>
+<a href="{% url 'users:registro' %}" class="btn">Registrarse</a>
+{% endblock %}

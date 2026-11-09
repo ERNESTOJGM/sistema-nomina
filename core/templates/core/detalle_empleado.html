@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Detalle{% endblock %}
+{% block content %}
+<h2>Detalle del empleado</h2>
+<a href="{% url 'core:lista' %}" class="btn">Volver</a>
+<table style="margin-top:1rem;">
+<tr><td><b>Cedula</b></td><td>{{ emp.cedula }}</td></tr>
+<tr><td><b>Nombre</b></td><td>{{ emp.nombre }}</td></tr>
+<tr><td><b>Fecha ingreso</b></td><td>{{ emp.fecha_ingreso|date:"d/m/Y" }}</td></tr>
+<tr><td><b>Anios servicio</b></td><td>{{ emp.anios_servicio }}</td></tr>
+<tr><td><b>Sueldo basico</b></td><td>${{ emp.sueldo_basico|floatformat:2 }}</td></tr>
+<tr><td><b>Ayuda ciudad</b></td><td>${{ emp.ayuda_ciudad|floatformat:2 }}</td></tr>
+<tr><td><b>Primera quincena (40%)</b></td><td>${{ emp.primera_quincena|floatformat:2 }}</td></tr>
+<tr><td><b>Quincena 30 (60%)</b></td><td>${{ emp.quincena_30|floatformat:2 }}</td></tr>
+<tr><td><b>Caja de ahorros</b></td><td>${{ emp.caja_ahorros|floatformat:2 }}</td></tr>
+<tr><td><b>Fideicomiso</b></td><td>${{ emp.fideicomiso|floatformat:2 }}</td></tr>
+</table>
+{% endblock %}
